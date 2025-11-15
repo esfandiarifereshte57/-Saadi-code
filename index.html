@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>گروه| Saadi Code</title>
+    <title>گروه سعدی کد | Saadi Code</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Reset و تنظیمات پایه */
@@ -54,7 +54,7 @@
         
         .header-content {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
         }
         
@@ -74,50 +74,6 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 800;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 1.5rem;
-            position: relative;
-        }
-        
-        nav ul li a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            padding: 0.5rem 0;
-        }
-        
-        nav ul li a:hover {
-            color: var(--accent);
-        }
-        
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent);
-            transition: width 0.3s;
-        }
-        
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-        
-        .mobile-menu {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--accent);
         }
         
         /* بخش هیرو */
@@ -338,7 +294,7 @@
             background: radial-gradient(circle at 70% 30%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
         }
         
-        /* بخش تیم - بهینه‌شده */
+        /* بخش تیم - بهینه‌شده با منوی کشویی */
         .team {
             padding: 6rem 0;
             background-color: var(--secondary);
@@ -362,6 +318,13 @@
             font-size: 4rem;
             color: #000;
             box-shadow: var(--glow);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .team-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.7);
         }
         
         .team h2 {
@@ -370,6 +333,7 @@
             color: var(--accent);
             position: relative;
             display: inline-block;
+            cursor: pointer;
         }
         
         .team h2::after {
@@ -387,6 +351,13 @@
             text-align: right;
             line-height: 1.8;
             margin-bottom: 2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .team-text.active {
+            max-height: 500px;
         }
         
         .team-line {
@@ -589,21 +560,6 @@
                 margin-bottom: 1rem;
             }
             
-            nav ul {
-                flex-direction: column;
-            }
-            
-            nav ul li {
-                margin: 0.5rem 0;
-            }
-            
-            .mobile-menu {
-                display: block;
-                position: absolute;
-                left: 20px;
-                top: 20px;
-            }
-            
             .about-content,
             .contact-content {
                 grid-template-columns: 1fr;
@@ -647,7 +603,7 @@
     </style>
 </head>
 <body>
-    <!-- هدر -->
+    <!-- هدر - بدون منوی ناوبری -->
     <header>
         <div class="container">
             <div class="header-content">
@@ -655,18 +611,6 @@
                     <img src="https://cdn.imgurl.ir/uploads/o52362_IMG_4373.jpeg" alt="لوگو سعدی کد" class="logo-img">
                     <h1>سعدی‌کد</h1>
                 </div>
-                <div class="mobile-menu">
-                    <i class="fas fa-bars"></i>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="#home">خانه</a></li>
-                        <li><a href="#services">خدمات</a></li>
-                        <li><a href="#about">درباره ما</a></li>
-                        <li><a href="#team">تیم</a></li>
-                        <li><a href="#contact">تماس</a></li>
-                    </ul>
-                </nav>
             </div>
         </div>
     </header>
@@ -733,15 +677,15 @@
         </div>
     </section>
 
-    <!-- بخش تیم - بهینه‌شده -->
+    <!-- بخش تیم - بهینه‌شده با منوی کشویی -->
     <section class="team" id="team">
         <div class="container">
             <div class="team-content fade-in">
-                <div class="team-image">
+                <div class="team-image" id="teamToggle">
                     <i class="fas fa-users"></i>
                 </div>
-                <h2>تیم متخصص سعدی کد</h2>
-                <div class="team-text">
+                <h2 id="teamTextToggle">تیم متخصص سعدی کد</h2>
+                <div class="team-text" id="teamText">
                     <div class="team-line">گروه سعدی کد متشکل از توسعه‌دهندگان با استعداد، طراحان خلاق و متخصصان فناوری اطلاعات است که با همکاری یکدیگر، راه‌حل‌های نرم‌افزاری نوآورانه و با کیفیت بالا ارائه می‌دهند.</div>
                     <div class="team-line">ما با ترکیب تخصص فنی و خلاقیت، محصولاتی خلق می‌کنیم که نه تنها نیازهای فنی را برآورده می‌کنند، بلکه تجربه کاربری بی‌نظیری ارائه می‌دهند.</div>
                     <div class="team-line">تیم ما با سال‌ها تجربه در صنعت فناوری اطلاعات، آماده ارائه راهکارهای نوآورانه برای چالش‌های پیچیده کسب‌وکارها است.</div>
@@ -815,35 +759,12 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>۱۴۰۴</p>
+                <p>کلیه حقوق مادی و معنوی این وبسایت متعلق به گروه سعدی کد می‌باشد. © ۱۴۰۲</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // منوی موبایل
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            document.querySelector('nav ul').classList.toggle('show');
-        });
-
-        // اسکرول نرم برای لینک‌ها
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if(targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if(targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
         // انیمیشن اسکرول
         const fadeElements = document.querySelectorAll('.fade-in');
         
@@ -887,6 +808,19 @@
                     this.parentElement.classList.toggle('active');
                 }
             });
+        });
+
+        // منوی کشویی بخش تیم
+        const teamToggle = document.getElementById('teamToggle');
+        const teamTextToggle = document.getElementById('teamTextToggle');
+        const teamText = document.getElementById('teamText');
+
+        teamToggle.addEventListener('click', function() {
+            teamText.classList.toggle('active');
+        });
+
+        teamTextToggle.addEventListener('click', function() {
+            teamText.classList.toggle('active');
         });
     </script>
 </body>
