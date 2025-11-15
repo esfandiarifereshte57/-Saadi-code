@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>گروه سعدی کد | Saadi Code</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset و تنظیمات پایه */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #0a0a0a;
+            --secondary: #1a1a1a;
+            --accent: #00ff88;
+            --accent-dark: #00cc6a;
+            --text: #e0e0e0;
+            --text-light: #a0a0a0;
+            --border: #333;
+            --glow: 0 0 10px rgba(0, 255, 136, 0.5);
+        }
+        
+        body {
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* استایل هدر */
+        header {
+            background-color: rgba(10, 10, 10, 0.95);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            height: 50px;
+            margin-left: 10px;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            background: linear-gradient(90deg, var(--accent), #00ccff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 0;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--accent);
+        }
+        
+        /* بخش هیرو */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 12rem 0 8rem;
+            text-align: center;
+            margin-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: var(--text-light);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+            color: #000;
+            padding: 1rem 2rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: var(--glow);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.7);
+        }
+        
+        /* بخش خدمات */
+        .services {
+            padding: 6rem 0;
+            background-color: var(--secondary);
+            position: relative;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+        
+        .section-title p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .service-card {
+            background-color: rgba(30, 30, 30, 0.7);
+            border-radius: 10px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-dark));
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5), var(--glow);
+        }
+        
+        .service-icon {
+            font-size: 3.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            background: rgba(0, 255, 136, 0.1);
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .service-card p {
+            color: var(--text-light);
+        }
+        
+        /* بخش درباره ما */
+        .about {
+            padding: 6rem 0;
+            background-color: var(--primary);
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .about-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            font-size: 1.1rem;
+        }
+        
+        .about-image {
+            background: linear-gradient(135deg, var(--secondary), #252525);
+            height: 400px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            font-size: 1.2rem;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
+        }
+        
+        /* بخش تیم */
+        .team {
+            padding: 6rem 0;
+            background-color: var(--secondary);
+            text-align: center;
+        }
+        
+        .team-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .team-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #00ccff);
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #000;
+            box-shadow: var(--glow);
+        }
+        
+        .team h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .team p {
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+        
+        /* بخش تماس */
+        .contact {
+            padding: 6rem 0;
+            background-color: var(--primary);
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            position: relative;
+        }
+        
+        .contact-info h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), transparent);
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-details p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        
+        .contact-details i {
+            margin-left: 10px;
+            color: var(--accent);
+            width: 20px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            color: var(--accent);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 1.2rem;
+            border: 1px solid var(--border);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            color: #000;
+            transform: translateY(-5px);
+            box-shadow: var(--glow);
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            background-color: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 1rem;
+            color: var(--text);
+            transition: all 0.3s;
+        }
+        
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2);
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        /* فوتر */
+        footer {
+            background-color: #0a0a0a;
+            color: var(--text-light);
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* انیمیشن‌ها */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        /* رسپانسیو */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-bottom: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+                position: absolute;
+                left: 20px;
+                top: 20px;
+            }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- هدر -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <img src="https://cdn.imgurl.ir/uploads/o52362_IMG_4373.jpeg" alt="لوگو سعدی کد" class="logo-img">
+                    <h1>سعدی‌کد</h1>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">خانه</a></li>
+                        <li><a href="#services">خدمات</a></li>
+                        <li><a href="#about">درباره ما</a></li>
+                        <li><a href="#team">تیم</a></li>
+                        <li><a href="#contact">تماس</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- بخش هیرو -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content fade-in">
+                <h2>گروه برنامه‌نویسی سعدی کد</h2>
+                <p>توسعه نرم‌افزارهای پیشرفته با کیفیت و طراحی منحصر به فرد توسط تیم متخصص سعدی کد</p>
+                <a href="#contact" class="btn">شروع پروژه شما</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش خدمات -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>خدمات ما</h2>
+                <p>تخصص ما در توسعه راهکارهای نرم‌افزاری پیشرفته و منحصر به فرد</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>توسعه وب پیشرفته</h3>
+                    <p>طراحی و توسعه وبسایت‌های مدرن و پویا با جدیدترین تکنولوژی‌های روز دنیا</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>اپلیکیشن موبایل</h3>
+                    <p>توسعه اپلیکیشن‌های iOS و Android با رابط کاربری جذاب و عملکرد بهینه</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <h3>نرم‌افزارهای سفارشی</h3>
+                    <p>طراحی و توسعه نرم‌افزارهای سازمانی و اختصاصی متناسب با نیازهای شما</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش درباره ما -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text fade-in">
+                    <h2>درباره گروه سعدی کد</h2>
+                    <p>گروه سعدی کد یک تیم متخصص و با تجربه در زمینه توسعه نرم‌افزار است که با تمرکز بر کیفیت و نوآوری، راهکارهای نرم‌افزاری منحصر به فرد ارائه می‌دهد.</p>
+                    <p>ما باور داریم که هر پروژه یک اثر هنری است و باید با دقت و خلاقیت اجرا شود. تمرکز ما بر ایجاد تجربیات کاربری بی‌نظیر و کدنویسی تمیز و بهینه است.</p>
+                    <p>با سال‌ها تجربه در زمینه توسعه نرم‌افزار، ما راهکارهای فنی پیشرفته‌ای ارائه می‌دهیم که نیازهای پیچیده کسب‌وکارها را برطرف می‌کند.</p>
+                    <a href="#contact" class="btn">دریافت مشاوره رایگان</a>
+                </div>
+                <div class="about-image fade-in">
+                    <div>تصویر مفهومی گروه سعدی کد</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش تیم -->
+    <section class="team" id="team">
+        <div class="container">
+            <div class="team-content fade-in">
+                <div class="team-image">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h2>تیم متخصص سعدی کد</h2>
+                <p>گروه سعدی کد متشکل از توسعه‌دهندگان با استعداد، طراحان خلاق و متخصصان فناوری اطلاعات است که با همکاری یکدیگر، راه‌حل‌های نرم‌افزاری نوآورانه و با کیفیت بالا ارائه می‌دهند.</p>
+                <p>ما با ترکیب تخصص فنی و خلاقیت، محصولاتی خلق می‌کنیم که نه تنها نیازهای فنی را برآورده می‌کنند، بلکه تجربه کاربری بی‌نظیری ارائه می‌دهند.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- بخش تماس -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>تماس با ما</h2>
+                <p>برای شروع پروژه خود یا دریافت مشاوره رایگان با ما در تماس باشید</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <h3>اطلاعات تماس</h3>
+                    <div class="contact-details">
+                        <p><i class="fas fa-user"></i> گروه سعدی کد</p>
+                        <p><i class="fas fa-envelope"></i> info@saadicode.ir</p>
+                        <p><i class="fab fa-rubika"></i> Rubika.ir/saadicode</p>
+                    </div>
+                    <h3 style="margin-top: 2rem;">شبکه‌های اجتماعی</h3>
+                    <div class="social-links">
+                        <a href="https://rubika.ir/saadicode" title="روبیکا"><i class="fas fa-paper-plane"></i></a>
+                        <a href="#" title="تلگرام"><i class="fab fa-telegram"></i></a>
+                        <a href="#" title="اینستاگرام"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="گیت‌هاب"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form fade-in">
+                    <form>
+                        <input type="text" placeholder="نام و نام خانوادگی" required>
+                        <input type="email" placeholder="آدرس ایمیل" required>
+                        <input type="text" placeholder="موضوع">
+                        <textarea placeholder="پیام شما" required></textarea>
+                        <button type="submit" class="btn">ارسال پیام</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- فوتر -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>سعدی‌کد</h3>
+                    <p>گروه برنامه‌نویسی سعدی کد با هدف ارائه راه‌حل‌های نرم‌افزاری پیشرفته و با کیفیت تأسیس شده است.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>لینک‌های مفید</h3>
+                    <ul>
+                        <li><a href="#home">خانه</a></li>
+                        <li><a href="#services">خدمات</a></li>
+                        <li><a href="#about">درباره ما</a></li>
+                        <li><a href="#team">تیم</a></li>
+                        <li><a href="#contact">تماس</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>خدمات ما</h3>
+                    <ul>
+                        <li><a href="#">توسعه وب</a></li>
+                        <li><a href="#">اپلیکیشن موبایل</a></li>
+                        <li><a href="#">نرم‌افزار سفارشی</a></li>
+                        <li><a href="#">مشاوره فنی</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>کلیه حقوق مادی و معنوی این وبسایت متعلق به گروه سعدی کد می‌باشد. © ۱۴۰۲</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // منوی موبایل
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+
+        // اسکرول نرم برای لینک‌ها
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // انیمیشن اسکرول
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        fadeElements.forEach(el => {
+            el.style.opacity = 0;
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(el);
+        });
+
+        // افکت تایپ برای هیرو
+        const heroText = document.querySelector('.hero h2');
+        const text = heroText.textContent;
+        heroText.textContent = '';
+        
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                heroText.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        // شروع تایپ پس از لود صفحه
+        window.addEventListener('load', typeWriter);
+    </script>
+</body>
+</html>
