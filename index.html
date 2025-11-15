@@ -493,10 +493,27 @@
             font-size: 1.3rem;
             margin-bottom: 1.5rem;
             color: var(--accent);
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .footer-column h3::after {
+            content: '+';
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .footer-column.active h3::after {
+            transform: rotate(45deg);
         }
         
         .footer-column ul {
             list-style: none;
+            transition: max-height 0.3s ease;
+            overflow: hidden;
         }
         
         .footer-column ul li {
@@ -578,6 +595,29 @@
             
             .section-title h2 {
                 font-size: 2rem;
+            }
+            
+            /* استایل فوتر در موبایل */
+            .footer-column h3::after {
+                display: block;
+            }
+            
+            .footer-column ul {
+                max-height: 0;
+            }
+            
+            .footer-column.active ul {
+                max-height: 500px;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .footer-column h3::after {
+                display: none;
+            }
+            
+            .footer-column ul {
+                max-height: none !important;
             }
         }
     </style>
@@ -696,11 +736,11 @@
                     <div class="contact-details">
                         <p><i class="fas fa-user"></i> گروه سعدی کد</p>
                         <p><i class="fas fa-envelope"></i> info@saadicode.ir</p>
-                        <p><i class="fab fa-rubika"></i> Rubika.ir/saadicode</p>
+                        <p><i class="fab fa-rubika"></i> <a href="https://rubika.ir/saadicode" style="color: var(--text-light); text-decoration: none;">Rubika.ir/saadicode</a></p>
                     </div>
                     <h3 style="margin-top: 2rem;">شبکه‌های اجتماعی</h3>
                     <div class="social-links">
-                        <a href="https://rubika.ir/saadicode" title="روبیکا"><i class="fas fa-paper-plane"></i></a>
+                        <a href="https://rubika.ir/saadicode" title="روبیکا" target="_blank"><i class="fas fa-paper-plane"></i></a>
                         <a href="#" title="تلگرام"><i class="fab fa-telegram"></i></a>
                         <a href="#" title="اینستاگرام"><i class="fab fa-instagram"></i></a>
                         <a href="#" title="گیت‌هاب"><i class="fab fa-github"></i></a>
@@ -812,6 +852,15 @@
         
         // شروع تایپ پس از لود صفحه
         window.addEventListener('load', typeWriter);
+
+        // قابلیت جمع‌شوندگی فوتر در موبایل
+        document.querySelectorAll('.footer-column h3').forEach(header => {
+            header.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    this.parentElement.classList.toggle('active');
+                }
+            });
+        });
     </script>
 </body>
 </html>
