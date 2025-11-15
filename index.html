@@ -338,7 +338,7 @@
             background: radial-gradient(circle at 70% 30%, rgba(0, 255, 136, 0.1) 0%, transparent 50%);
         }
         
-        /* بخش تیم */
+        /* بخش تیم - بهینه‌شده */
         .team {
             padding: 6rem 0;
             background-color: var(--secondary);
@@ -366,14 +366,38 @@
         
         .team h2 {
             font-size: 2.2rem;
-            margin-bottom: 1rem;
+            margin-bottom: 2rem;
             color: var(--accent);
+            position: relative;
+            display: inline-block;
         }
         
-        .team p {
-            color: var(--text-light);
+        .team h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+        
+        .team-text {
+            text-align: right;
+            line-height: 1.8;
             margin-bottom: 2rem;
+        }
+        
+        .team-line {
+            margin-bottom: 1.5rem;
+            padding: 0 1rem;
             font-size: 1.1rem;
+            color: var(--text-light);
+        }
+        
+        .team-line:last-child {
+            margin-bottom: 0;
         }
         
         /* بخش تماس */
@@ -709,7 +733,7 @@
         </div>
     </section>
 
-    <!-- بخش تیم -->
+    <!-- بخش تیم - بهینه‌شده -->
     <section class="team" id="team">
         <div class="container">
             <div class="team-content fade-in">
@@ -717,8 +741,11 @@
                     <i class="fas fa-users"></i>
                 </div>
                 <h2>تیم متخصص سعدی کد</h2>
-                <p>گروه سعدی کد متشکل از توسعه‌دهندگان با استعداد، طراحان خلاق و متخصصان فناوری اطلاعات است که با همکاری یکدیگر، راه‌حل‌های نرم‌افزاری نوآورانه و با کیفیت بالا ارائه می‌دهند.</p>
-                <p>ما با ترکیب تخصص فنی و خلاقیت، محصولاتی خلق می‌کنیم که نه تنها نیازهای فنی را برآورده می‌کنند، بلکه تجربه کاربری بی‌نظیری ارائه می‌دهند.</p>
+                <div class="team-text">
+                    <div class="team-line">گروه سعدی کد متشکل از توسعه‌دهندگان با استعداد، طراحان خلاق و متخصصان فناوری اطلاعات است که با همکاری یکدیگر، راه‌حل‌های نرم‌افزاری نوآورانه و با کیفیت بالا ارائه می‌دهند.</div>
+                    <div class="team-line">ما با ترکیب تخصص فنی و خلاقیت، محصولاتی خلق می‌کنیم که نه تنها نیازهای فنی را برآورده می‌کنند، بلکه تجربه کاربری بی‌نظیری ارائه می‌دهند.</div>
+                    <div class="team-line">تیم ما با سال‌ها تجربه در صنعت فناوری اطلاعات، آماده ارائه راهکارهای نوآورانه برای چالش‌های پیچیده کسب‌وکارها است.</div>
+                </div>
             </div>
         </div>
     </section>
